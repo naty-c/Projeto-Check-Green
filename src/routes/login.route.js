@@ -6,6 +6,33 @@ const { sign } = require('jsonwebtoken');
 const loginRoutes = new Router();
 
 loginRoutes.post('/', async (req, res) => {
+
+    /*
+   #swagger.tags = ['Login'],
+   #swagger.summary = 'Create new login'
+   #swagger.parameters['body'] = {
+       in: 'body',
+       description: 'This endpoint will create login for a new user',
+       schema: {
+           $email: 'yuki@email.com',
+           $password: 'yukipassword'
+       }
+   #swagger.responses: {
+       '201': {
+           description: Ok
+       }
+       '401': {
+           description: Invalid password
+       }
+       '404': {
+           description: User not found
+       }
+       '500': {
+           description: Failed to login
+       }
+   }
+*/
+
     try {
         const { email, password } = req.body;
         console.log(email, password);
@@ -32,7 +59,7 @@ loginRoutes.post('/', async (req, res) => {
 
     } catch (error) {
         console.error('Login error:', error.message);
-        return res.status(400).json({ message: "Failed to login" });
+        return res.status(500).json({ message: "Failed to login" });
     }
 });
 

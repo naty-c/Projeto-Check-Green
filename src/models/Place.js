@@ -19,7 +19,11 @@ const Place = connection.define('places', {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            notEmpty: { msg: "Description cannot be empty." }
+            notEmpty: { msg: "Description cannot be empty." },
+            len: {
+                args: [60, 600],
+                msg: "Description must be between 60 and 600 characters."
+            }
         }
     },
     location: {

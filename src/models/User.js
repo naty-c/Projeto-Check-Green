@@ -7,7 +7,6 @@ const User = connection.define('users', {
         allowNull: false,
         unique: true,
         validate: {
-            notEmpty: { msg: "Please enter your name." },
             len: { 
                 args: [3, 33], 
                 msg: "Name length must be between 3 and 33 characters.",
@@ -17,7 +16,7 @@ const User = connection.define('users', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: { msg: "Ops! Email already registered." },
+        unique: true,
         validate: {
             isEmail: { msg: "Email should be valid." }
         }
@@ -30,10 +29,6 @@ const User = connection.define('users', {
                 args: [8, 80],
                 msg: "Password should have from 8 to 80 characters",
             },
-            is: {
-                args: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/,
-                msg: "Password must have at least one lowercase letter, one uppercase letter, one digit and one special character."
-            }
         }
     },
     gender: {   
@@ -67,9 +62,6 @@ const User = connection.define('users', {
     address: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-            notEmpty: { msg: "Address cannot be empty." }
-        }
     },
     phone: {
         type: DataTypes.STRING,

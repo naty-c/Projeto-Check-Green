@@ -26,6 +26,60 @@
         ],
         "summary": "Create new user",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "This endpoint will create new user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Yuki Cross"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "yuki@email.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "yukipassword"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "Female"
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "2008-08-08"
+                },
+                "CPF": {
+                  "type": "string",
+                  "example": "88888888888"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "Street 08, 08 - VN"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "4888888888"
+                }
+              },
+              "required": [
+                "name",
+                "email",
+                "password",
+                "gender",
+                "birthday",
+                "CPF",
+                "address",
+                "phone"
+              ]
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -82,8 +136,9 @@
         "parameters": [
           {
             "name": "id",
-            "in": "body",
+            "in": "path",
             "required": true,
+            "type": "string",
             "description": "This endpoint will list a user by ID",
             "schema": {
               "type": "object",
@@ -168,8 +223,9 @@
         "parameters": [
           {
             "name": "id",
-            "in": "body",
+            "in": "path",
             "required": true,
+            "type": "string",
             "description": "This endpoint will update a user by ID",
             "schema": {
               "type": "object",
@@ -284,6 +340,10 @@
     },
     "/places/": {
       "post": {
+        "tags": [
+          "Places"
+        ],
+        "summary": "Create new place",
         "description": "",
         "parameters": [
           {
@@ -294,34 +354,53 @@
           {
             "name": "body",
             "in": "body",
+            "description": "This endpoint will create new place by authenticated user",
             "schema": {
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Parque Ecológico do Córrego Grande"
                 },
                 "description": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "O Parque Ecológico do Córrego Grande é uma das principais áreas verdes de Florianópolis..."
                 },
                 "location": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Córrego Grande"
                 },
                 "latitude": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "-27.59658405"
                 },
                 "longitude": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "-48.51019818035506"
                 },
                 "accessibility": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Accessible"
                 },
                 "category": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Trilha"
                 },
                 "rating": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "5"
                 }
-              }
+              },
+              "required": [
+                "name",
+                "description",
+                "location",
+                "latitude",
+                "longitude",
+                "accessibility",
+                "category",
+                "rating"
+              ]
             }
           }
         ],
@@ -338,11 +417,35 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "get": {
+        "tags": [
+          "Places"
+        ],
+        "summary": "List places",
         "description": "",
         "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "type": "string"
+          },
           {
             "name": "authorization",
             "in": "header",
@@ -362,18 +465,75 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/places/{id}": {
       "get": {
+        "tags": [
+          "Places"
+        ],
+        "summary": "List place by ID",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "This endpoint will list a place by ID only for an authenticated user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Parque Ecológico do Córrego Grande"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "O Parque Ecológico do Córrego Grande é uma das principais áreas verdes de Florianópolis..."
+                },
+                "location": {
+                  "type": "string",
+                  "example": "Córrego Grande"
+                },
+                "latitude": {
+                  "type": "string",
+                  "example": "-27.59658405"
+                },
+                "longitude": {
+                  "type": "string",
+                  "example": "-48.51019818035506"
+                },
+                "accessibility": {
+                  "type": "string",
+                  "example": "Accessible"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "Trilha"
+                },
+                "rating": {
+                  "type": "string",
+                  "example": "5"
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "location",
+                "latitude",
+                "longitude",
+                "accessibility",
+                "category",
+                "rating"
+              ]
+            }
           },
           {
             "name": "authorization",
@@ -385,9 +545,6 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "401": {
             "description": "Unauthorized"
           },
@@ -397,16 +554,73 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
+        "tags": [
+          "Places"
+        ],
+        "summary": "Update a place by ID",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "This endpoint will update a place by ID only for an authenticated user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Parque Ecológico do Córrego Grande"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "O Parque Ecológico do Córrego Grande é uma das principais áreas verdes de Florianópolis..."
+                },
+                "location": {
+                  "type": "string",
+                  "example": "Córrego Grande"
+                },
+                "latitude": {
+                  "type": "string",
+                  "example": "-27.59658405"
+                },
+                "longitude": {
+                  "type": "string",
+                  "example": "-48.51019818035506"
+                },
+                "accessibility": {
+                  "type": "string",
+                  "example": "Accessible"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "Trilha"
+                },
+                "rating": {
+                  "type": "string",
+                  "example": "5"
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "location",
+                "latitude",
+                "longitude",
+                "accessibility",
+                "category",
+                "rating"
+              ]
+            }
           },
           {
             "name": "authorization",
@@ -451,9 +665,6 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "401": {
             "description": "Unauthorized"
           },
@@ -463,9 +674,18 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "delete": {
+        "tags": [
+          "Places"
+        ],
+        "summary": "Delete place by ID",
         "description": "",
         "parameters": [
           {
@@ -484,9 +704,6 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "401": {
             "description": "Unauthorized"
           },
@@ -496,24 +713,55 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/login/": {
       "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Create new login",
         "description": "",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "description": "This endpoint will create login for a new user",
             "schema": {
               "type": "object",
               "properties": {
-                "email": {
-                  "example": "any"
+                "type": {
+                  "type": "string",
+                  "example": "object"
                 },
-                "password": {
-                  "example": "any"
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "object",
+                      "properties": {
+                        "example": {
+                          "type": "string",
+                          "example": "yuki@email.com"
+                        }
+                      }
+                    },
+                    "password": {
+                      "type": "object",
+                      "properties": {
+                        "example": {
+                          "type": "string",
+                          "example": "yukipassword"
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -523,14 +771,14 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

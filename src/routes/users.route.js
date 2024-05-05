@@ -105,8 +105,16 @@ userRoutes.get('/', auth, async (req, res) => {
     #swagger.security = [{
         "bearerAuth": []
     }]
-    #swagger.responses[404] = { description: No users found. }
-    #swagger.responses[500] = { description: Uh-oh! Unable to list all users. }
+    #swagger.responses: {
+        '201': {
+           description: Ok
+        }
+        '404': { 
+            description: No users found. 
+        }
+        '500': { 
+            description: Uh-oh! Unable to list all users. 
+        }
 */
 
     try {
@@ -131,7 +139,7 @@ userRoutes.get('/:id', auth, async (req, res) => {
     #swagger.tags = ['Users'],
     #swagger.summary = 'List user by ID'
     #swagger.parameters['id'] = {
-        in: 'body',
+        in: 'path',
         description: 'This endpoint will list a user by ID',
         schema: {
             $name: 'Yuki Cross',
@@ -148,6 +156,9 @@ userRoutes.get('/:id', auth, async (req, res) => {
         "bearerAuth": []
     }]
     #swagger.responses: {
+        '201': {
+           description: Ok
+        }
         '404': {
             description: No users found.
         }
@@ -180,7 +191,7 @@ userRoutes.put('/:id', auth, async (req, res) => {
     #swagger.tags = ['Users'],
     #swagger.summary = 'Update a user by ID'
     #swagger.parameters['id'] = {
-        in: 'body',
+        in: 'path',
         description: 'This endpoint will update a user by ID',
         schema: {
             $name: 'Yuki Soma',
