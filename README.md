@@ -14,16 +14,16 @@ Final project for #FuturoDEV FMT Module 1 [Viagem365]
 ## Migrations
 
 ### Criar migration
-Opção nº 1: `sequelize migration:generate --name nome_da_migracao`
-Opção nº 2: `npx sequelize-cli migration:generate --name criar_tabela_alunos`
+1. Opção nº 1: `sequelize migration:generate --name nome_da_migracao`
+2. Opção nº 2: `npx sequelize-cli migration:generate --name criar_tabela_alunos`
 
 ### Rodar migration
-Opção nº 1: `sequelize db:migrate`
-Opção nº 2: `npx sequelize db:migrate`
+1. Opção nº 1: `sequelize db:migrate`
+2. Opção nº 2: `npx sequelize db:migrate`
 
 ### Reverter última migration:
-Opção nº 1: `sequelize-cli db:migrate:undo`
-Opção nº 2: `npx sequelize-cli db:migrate:undo`
+1. Opção nº 1: `sequelize-cli db:migrate:undo`
+2. Opção nº 2: `npx sequelize-cli db:migrate:undo`
 
 ## Seeders
 
@@ -33,10 +33,10 @@ Opção nº 2: `npx sequelize-cli db:migrate:undo`
 ### Rodar seeder
 `npx sequelize-cli db:seed:all`
 
-### Reverter última seeder:
-Opção nº 1: `npx sequelize-cli db:seed:undo`
-Opção nº 2: `npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data`
-Opção nº 3: `npx sequelize-cli db:seed:undo:all`
+### Reverter última seeder, seeder específica ou todas:
+1. Opção nº 1: `npx sequelize-cli db:seed:undo`
+2. Opção nº 2: `npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data`
+3. Opção nº 3: `npx sequelize-cli db:seed:undo:all`
 
 ## Documentação
 
@@ -60,9 +60,9 @@ https://www.openstreetmap.org/help
 
 ## Scripts adicionais no package.json:
 
-"start:dev": "nodemon src/index.js",
-"swagger": "node ./swagger.js",
-"test-coordinates": "node src/service/test.coordinates.js"
+1. "start:dev": "nodemon src/index.js",
+2. "swagger": "node ./swagger.js",
+3. "test-coordinates": "node src/service/test.coordinates.js"
 
 ### Para rodar o repositório em ambiente local
 `npm run start:dev`
@@ -71,7 +71,7 @@ https://www.openstreetmap.org/help
 `npm run swagger`
 
 ### Para gerar coordenadas com test.coordinates.js
-`npm run test-coordinates`
+Arquivo separado em service para buscar as coordenadas para o cadastro de novos lugares. Basta colocar o nome do lugar na const address e usar o comando `npm run test-coordinates` no terminal para ter acesso às informações de latitude e longitude
 
 ## Bibliotecas utilizadas
 

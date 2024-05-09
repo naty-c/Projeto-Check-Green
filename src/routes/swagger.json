@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "API Documentation",
-    "description": "Documentation for my API with users and places",
+    "description": "Documentation for my API connecting users and places",
     "version": "1.0.0"
   },
   "host": "localhost:3033",
@@ -97,7 +97,7 @@
           "Users"
         ],
         "summary": "List all users",
-        "description": "",
+        "description": "This endpoint will list all users",
         "parameters": [
           {
             "name": "authorization",
@@ -309,7 +309,7 @@
           "Users"
         ],
         "summary": "Delete user by ID",
-        "description": "",
+        "description": "This endpoint will delete a user by ID",
         "parameters": [
           {
             "name": "id",
@@ -435,11 +435,26 @@
           "Places"
         ],
         "summary": "List places",
-        "description": "",
+        "description": "This endpoint will list all places for an authenticated user or list by filter using query parameters (name, location, category)",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
             "type": "string"
           }
         ],
@@ -665,7 +680,7 @@
           "Places"
         ],
         "summary": "Delete place by ID",
-        "description": "",
+        "description": "This endpoint will delete a place by ID only for an authenticated user",
         "parameters": [
           {
             "name": "id",
@@ -702,7 +717,7 @@
     },
     "/login/": {
       "post": {
-        "description": "",
+        "description": "This endpoint will start login for a user",
         "parameters": [
           {
             "name": "body",
@@ -711,10 +726,10 @@
               "type": "object",
               "properties": {
                 "email": {
-                  "example": "any"
+                  "example": "yuki@email.com"
                 },
                 "password": {
-                  "example": "any"
+                  "example": "#1Yukisecret"
                 }
               }
             }

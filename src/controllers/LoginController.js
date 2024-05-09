@@ -6,10 +6,10 @@ class LoginController {
 
 /*
    #swagger.tags = ['Login'],
-   #swagger.summary = 'Create new login'
+   #swagger.summary = 'Start new login'
    #swagger.parameters['body'] = {
        in: 'body',
-       description: 'This endpoint will create login for a new user',
+       description: 'This endpoint will start login for a user',
        schema: {
            $email: 'yuki@email.com',
            $password: '#1Yukisecret'
