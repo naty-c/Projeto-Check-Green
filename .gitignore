@@ -1,3 +1,2 @@
 /node_modules
 .env
-/src/database/seeders/20240502074917-demo-user.js
