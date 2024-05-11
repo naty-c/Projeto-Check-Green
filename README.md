@@ -1,44 +1,46 @@
-# Projeto-Check-Green
+# Project-Check-Green
 
-Final project for #FuturoDEV FMT Module 1 [Viagem365]
+Final project for #teamTRIP #FuturoDEV FMT Module 1 - Back-End [Viagem365]
 
-## Como rodar o repositório
+MVP for an API Rest connecting travelers to share sustainable experiences
 
-### Dependências ao acessar o projeto pela primeira vez:
-1. `npm init-y` para o Node.js
-2. `npm install express --save` para o Express
-3. `npm install sequelize pg pg-hstore jsonwebtoken bcryptjs cors` para as bibliotecas iniciais, além de referenciar o Pg Admin
-4. `npm install nodemon dotenv --save-dev` para habilitar server e carregar variáveis de ambiente
-5. `cp .env_example .env` para exemplo de configuração do .env
+## How to run the repository
+
+### Dependencies needed when accessing the project for the first time:
+1. `npm init-y` for Node.js
+2. `npm install express --save` for Express
+3. `npm install sequelize pg pg-hstore jsonwebtoken bcryptjs cors` for the starting libraries, as well as referencing Pg Admin (PostgreSQL)
+4. `npm install nodemon dotenv --save-dev` to enable server and load environment variables
+5. `cp .env_example .env` example for .env configuration 
 
 ## Migrations
 
-### Criar migration
-1. Opção nº 1: `sequelize migration:generate --name nome_da_migracao`
-2. Opção nº 2: `npx sequelize-cli migration:generate --name criar_tabela_alunos`
+### Create migration
+1. Option nº 1: `sequelize migration:generate --name nome_da_migracao`
+2. Option nº 2: `npx sequelize-cli migration:generate --name criar_tabela_alunos`
 
-### Rodar migration
-1. Opção nº 1: `sequelize db:migrate`
-2. Opção nº 2: `npx sequelize db:migrate`
+### Run migration
+1. Option nº 1: `sequelize db:migrate`
+2. Option nº 2: `npx sequelize db:migrate`
 
-### Reverter última migration:
-1. Opção nº 1: `sequelize-cli db:migrate:undo`
-2. Opção nº 2: `npx sequelize-cli db:migrate:undo`
+### Revert last migration:
+1. Option nº 1: `sequelize-cli db:migrate:undo`
+2. Option nº 2: `npx sequelize-cli db:migrate:undo`
 
 ## Seeders
 
-### Criar valores iniciais no banco de dados:
+### Create initial values in the database:
 `npx sequelize-cli seed:generate --name demo-user`
 
-### Rodar seeder
+### Run seeder
 `npx sequelize-cli db:seed:all`
 
-### Reverter última seeder, seeder específica ou todas:
-1. Opção nº 1: `npx sequelize-cli db:seed:undo`
-2. Opção nº 2: `npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data`
-3. Opção nº 3: `npx sequelize-cli db:seed:undo:all`
+### Revert last seeder, specific seeder or all:
+1. Option nº 1: `npx sequelize-cli db:seed:undo`
+2. Option nº 2: `npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data`
+3. Option nº 3: `npx sequelize-cli db:seed:undo:all`
 
-## Documentação
+## Documentation
 
 ### Sequelize
 https://sequelize.org/docs/v6/core-concepts/model-basics/
@@ -58,30 +60,30 @@ https://www.npmjs.com/package/validator
 ### API OpenStreetMap
 https://www.openstreetmap.org/help
 
-## Scripts adicionais no package.json:
+## Additional scripts in package.json:
 
 1. "start:dev": "nodemon src/index.js",
 2. "swagger": "node ./swagger.js",
 3. "test-coordinates": "node src/service/test.coordinates.js"
 
-### Para rodar o repositório em ambiente local
+### To run the repository in a local environment:
 `npm run start:dev`
 
-### Para atualizar e rodar o Swagger.json com autogen
+### To update and run Swagger.json with autogen:
 `npm run swagger`
 
 ### Para gerar coordenadas com test.coordinates.js
-Arquivo separado em service para buscar as coordenadas para o cadastro de novos lugares. Basta colocar o nome do lugar na const address e usar o comando `npm run test-coordinates` no terminal para ter acesso às informações de latitude e longitude
+Separate file in service folder to search for coordinates when registering new places. Add the name of a place using the const address and type the command `npm run test-coordinates` in the terminal to access the latitude and longitude information
 
-## Bibliotecas utilizadas
+## Libraries used
 
 ### Sequelize
 `npm install sequelize` 
 
-### Driver do PostgreSQL
+### PostgreSQL Drive
 `npm install pg pg-hstore` 
 
-### CLI do Sequelize
+### Sequelize CLI
 `npm install -g sequelize-cli` 
 
 ### Dotenv

@@ -35,11 +35,9 @@ class LoginController {
             const { email, password } = req.body;
             console.log(email, password);
             
-            // Look for the user through the email
             const user = await User.findOne({ 
                 where: { email:email } });
     
-            // Verify if the user was found
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }

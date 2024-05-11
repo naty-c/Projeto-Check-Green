@@ -40,7 +40,6 @@ class PlaceController {
         try {
             const { name, description, location, accessibility, category, rating } = req.body;
     
-            // Verify if all required fields are being provided
             if (!name || !description || !location || !accessibility || !category || !rating) {
                 return res.status(400).json({ error: 'All fields are required.' });
             }
@@ -48,12 +47,10 @@ class PlaceController {
             // Get coordinates from OpenStreetMap
             const { latitude, longitude } = await getCoordinatesFromAddress(location);
     
-            // Check if latitude and longitude are valid numbers
             if (isNaN(latitude) || isNaN(longitude)) {
                 throw new Error('Latitude and longitude must be valid numbers.');
             }
     
-            // Create a new destination associated with the authenticated user
             const newPlace = await Place.create({
                 name,
                 description,

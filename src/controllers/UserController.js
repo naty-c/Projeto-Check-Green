@@ -1,13 +1,11 @@
 const User = require('../models/User');
 const { registerUser } = require('../service/register.user');
 const { validateUser } = require('../service/user.validator');
+const Place = require('../models/Place');
 
 async function findUserById(id) {
     try {
         const user = await User.findByPk(id);
-        if (!user) {
-            throw new Error('User not found.');
-        }
         return user;
     } catch (error) {
         throw new Error('Error finding user by ID.');
@@ -112,7 +110,7 @@ class UserController {
         try {
             const users = await User.findAll();
     
-            if (!users.length === 0) {
+            if (users.length === 0) {
                 return res.status(404).json({ message: 'No users found.' });
             }        
     
@@ -198,6 +196,9 @@ class UserController {
         '200': {
             description: Hooray! User successfuly updated
         }
+        '403': {
+            description: You do not have permission to update this user.
+        }
         '404': {
             description: User not found.
         }
@@ -212,6 +213,10 @@ class UserController {
 
             if(!user) {
                 return res.status(404).json({ message: 'User not found.' });
+            }
+
+            if (req.user.id !== user.id) {
+                return res.status(403).json({ error: 'You do not have permission to update this user.' });
             }
     
             await user.update(req.body);
@@ -243,6 +248,9 @@ class UserController {
         '200': {
             description: User deleted.
         }
+        '403': {
+            description: This user cannot be deleted because there are associated places.   
+        }
         '404': {
             description: User not found.
         }
@@ -258,6 +266,13 @@ class UserController {
             if(!user) {
                 return res.status(404).json({ message: 'User not found.' });
             }
+
+        // Verify if there are any associated places to a specific user
+        const placesCount = await Place.count({ where: { user_id: user.id } });
+
+        if (placesCount > 0) {
+            return res.status(403).json({ error: 'This user cannot be deleted because there are associated places.' });
+        }
     
             await user.destroy();
     
