@@ -7,7 +7,7 @@ async function getCoordinatesForPlace() {
         console.log("Latitude:", latitude);
         console.log("Longitude:", longitude);
     } catch (error) {
-        console.error("Erro ao obter coordenadas:", error.message);
+        console.error("Error to get coordinates:", error.message);
     }
 }
 
